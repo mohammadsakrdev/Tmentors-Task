@@ -1,0 +1,148 @@
+﻿<div>
+
+    <div id="modalForDetail" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:gray">
+                    <h4 class="modal-title" style="color:white"><strong>Member</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="masterData">
+                        <form name="add_item4">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label>First Name</label>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <input type="text" ng-model="vm.firstName" id="firstName" name="firstName" placeholder="First Name" required class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" >
+                                        <div class="col-lg-3">
+                                            <label>Last Name</label>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <input type="text" ng-model="vm.lastName" id="lastName" name="lastName" placeholder="Last Name" required class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row" >
+                                        <div class="col-lg-3">
+                                            <label>Title</label>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <input type="text" id="title" name="title" ng-model="vm.title" placeholder="Title" required class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label>Project</label>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <select name="projects" id="projects" ng-model="vm.selectionModal" class="form-control">
+                                                <option value="0">--Select Project--</option>
+                                                <option ng-repeat="proj in vm.projects" value="{{proj.id}}">{{proj.projectName}}</option>
+                                            </select>
+                                         </div>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-embosed" data-dismiss="modal">Close</button> 
+                    <button type="button" class="btn btn-default btn-embosed" ng-show="vm.showUpdate" ng-click="vm.edit(vm)" data-dismiss="modal">Update</button>
+                    <button type="button" class="btn btn-default btn-embosed" ng-show="vm.showInsert" ng-click="vm.submit(vm)"  data-dismiss="modal">Insert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="endMessage" class="modal fade" role="dialog" >
+        <div class="modal-dialog" style="margin-top:15%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Result Message</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success" ng-show="vm.messageSuc">
+                        {{vm.SuccessMsg}} <span style="color:#4399E2; font-weight:bold;text-decoration:underline;"></span>
+                    </div>
+
+                    <div class="alert alert-danger" ng-show="vm.messageErr">
+                        {{vm.ErrorMsg}}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alertMessage" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="margin-top:15%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Result Message</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success">
+                        Are you sure you want to delete? <span style="color:#4399E2; font-weight:bold;text-decoration:underline;"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" ng-click="vm.delete()" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-brand" style="font-family:Verdana; font-size:30px;">
+            Task Application
+        </div>
+    </nav>
+
+    <form role="form" class="form-horizontal container-fluid">
+        <div class="form-group">
+            <label for="projects" class="col-md-4 control-label" style="font-size:20px;">Projects</label>
+            <div class="col-md-3">
+                <select name="projects" id="projects" ng-change="vm.change(vm.selection)" ng-model="vm.selection" class="form-control">
+                    <option>All</option>
+                    <option ng-repeat="proj in vm.projects" value="{{proj.id}}">{{proj.projectName}}</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button ng-click="vm.addNew()" class="btn btn-primary"><span>New Member</span></button>
+            </div>
+        </div>
+        
+        <br />
+
+        <div >
+            <section  fullscreen="isfullscreen03">
+                <div ui-grid="memberGrid" ui-grid-move-columns ui-grid-resizecolumns ui-grid-pinning ui-grid-edit ui-grid-row-edit ui-grid-selection ui-grid-cellnav>
+
+                </div>
+            </section>
+        </div>
+
+    </form>
+
+</div>
